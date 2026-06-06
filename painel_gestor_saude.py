@@ -91,9 +91,9 @@ def tela_Inicio():
         elif funcao == 2: 
             painel_encaminhamentos()
         elif funcao == 3:
-            print("listar")
+            listar_encaminhamentos()
         elif funcao == 4:
-            print("editar")
+            editar_encaminhamentos()
         elif funcao == 5:
             os.system("cls")
             print("Sistema finalizado.")
