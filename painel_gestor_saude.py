@@ -31,6 +31,8 @@ def cadastro_encaminhamento():
         "situacao": situacao
         }
     encaminhamentos.append(perfil_encaminhamento)
+    print("Encaminhamento registrado com sucesso!")
+    input("\nPressione Enter para voltar ao menu...")
     tela_Inicio()
 
 
