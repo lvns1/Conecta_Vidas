@@ -21,15 +21,6 @@ def exibir_cabecalho():
 # BRECHAS PARA AS FUTURAS TELAS (MÓDULOS)
 # ==========================================
 
-def tela_assistencia():
-    limpar_tela()
-    exibir_cabecalho()
-    print("\n" + " " * 14 + "[ MÓDULO SOCIAL ]")
-    print("\nBem-vindo(a), Assistente Social!")
-    print("-> Aqui você conectará as rotinas do CRAS e CadÚnico.")
-    print("\n[ Funcionalidades em desenvolvimento... ]")
-    print("\nPressione ENTER para sair do sistema...")
-    input()
 
 def tela_saude():
     limpar_tela()
