@@ -1,5 +1,6 @@
 import os
 import time
+import painel_assistente
 
 def limpar_tela():
     """Limpa o terminal independentemente do sistema operacional."""
@@ -70,8 +71,9 @@ def iniciar_sistema():
         
         # Roteamento de Usuários
         if usuario == "assistente" and senha == "assistente":
-            tela_assistencia()
-            break
+             print("\nLogin realizado com sucesso!!\n")
+             painel_assistente.abrir_painel()
+             break
         elif usuario == "saude" and senha == "saude":
             tela_saude()
             break
