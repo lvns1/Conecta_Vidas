@@ -64,7 +64,7 @@ def iniciar_sistema():
         if usuario == "assistente" and senha == "assistente":
              print("\nLogin realizado com sucesso!!\n")
              painel_assistente.abrir_painel()
-             break
+             
         elif usuario == "saude" and senha == "saude":
             tela_saude()
             break

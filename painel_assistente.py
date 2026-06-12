@@ -97,6 +97,7 @@ def abrir_painel():
         elif opcao == "4":
             estatisticas()
         elif opcao == "0":
+            limpar()
             print("\nSaindo do painel...")
             time.sleep(1)
             break
