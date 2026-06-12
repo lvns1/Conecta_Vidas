@@ -58,73 +58,54 @@ def painel_encaminhamentos():
 
 def listar_encaminhamentos():
     os.system("cls")
-    header()
-    print("                        LISTA DE ENCAMINHAMENTOS            ")
-    print("=============================================================================")
-    if not encaminhamentos:
-        print("\nNenhum encaminhamento cadastrado.\n")
-        input("Pressione Enter para voltar...")
-        tela_Inicio()
-        return
-    for i, e in enumerate(encaminhamentos, 1):
-        print(f"\n  [{i}] Nome......: {e['nome']}")
-        print(f"      Idade.....: {e['idade']} anos")
-        print(f"      NIS.......: {e['nis']}")
-        print(f"      Serviço...: {e['servico']}")
-        print(f"      Motivo....: {e['motivo']}")
-        print(f"      Situação..: {e['situacao']}")
-        print("-----------------------------------------------------------------------------")
-    input("\nPressione Enter para voltar ao menu...")
-    tela_Inicio()
+header()
 
+print("LISTA DE ENCAMINHAMENTOS")
+
+if len(encaminhamentos) == 0:
+    print("Nenhum encaminhamento cadastrado.")
+else:
+    for e in encaminhamentos:
+        print("------------------------")
+        print("Nome:", e["nome"])
+        print("Idade:", e["idade"])
+        print("NIS:", e["nis"])
+        print("Serviço:", e["servico"])
+        print("Motivo:", e["motivo"])
+        print("Situação:", e["situacao"])
+
+input("\nPressione Enter para voltar...")
+tela_Inicio()
 
 def editar_encaminhamentos():
     os.system("cls")
-    header()
-    print("                        EDITAR ENCAMINHAMENTO            ")
-    print("=============================================================================")
-    if not encaminhamentos:
-        print("\nNenhum encaminhamento cadastrado.\n")
-        input("Pressione Enter para voltar...")
-        tela_Inicio()
-        return
-    for i, e in enumerate(encaminhamentos, 1):
-        print(f"  [{i}] {e['nome']} - {e['servico']} - [{e['situacao']}]")
-    print("-----------------------------------------------------------------------------")
-    try:
-        escolha = int(input("\nDigite o número do encaminhamento que deseja editar: "))
-        if escolha < 1 or escolha > len(encaminhamentos):
-            print("Número inválido.")
-            input("Pressione Enter para voltar...")
-            tela_Inicio()
-            return
-    except:
-        print("Entrada inválida.")
-        input("Pressione Enter para voltar...")
-        tela_Inicio()
-        return
-    e = encaminhamentos[escolha - 1]
-    os.system("cls")
-    header()
-    print(f"  Editando: {e['nome']}  (deixe em branco para manter o valor atual)\n")
-    print("=============================================================================")
-    novo_nome     = input(f"  Nome [{e['nome']}]: ").strip()
-    nova_idade    = input(f"  Idade [{e['idade']}]: ").strip()
-    novo_nis      = input(f"  NIS [{e['nis']}]: ").strip()
-    novo_servico  = input(f"  Serviço [{e['servico']}]: ").strip()
-    novo_motivo   = input(f"  Motivo [{e['motivo']}]: ").strip()
-    nova_situacao = input(f"  Situação [{e['situacao']}]: ").strip()
-    if novo_nome:     e["nome"]     = novo_nome
-    if nova_idade:
-        try:          e["idade"]    = int(nova_idade)
-        except:       print("Idade inválida, mantido o valor anterior.")
-    if novo_nis:      e["nis"]      = novo_nis
-    if novo_servico:  e["servico"]  = novo_servico
-    if novo_motivo:   e["motivo"]   = novo_motivo
-    if nova_situacao: e["situacao"] = nova_situacao
-    print("\n  Encaminhamento atualizado com sucesso!")
-    input("  Pressione Enter para voltar ao menu...")
-    tela_Inicio()
+header()
+
+print("EDITAR ENCAMINHAMENTO")
+
+for i in range(len(encaminhamentos)):
+    print(i + 1, "-", encaminhamentos[i]["nome"])
+
+opcao = int(input("Escolha o número: "))
+
+e = encaminhamentos[opcao - 1]
+
+novo_nome = input("Novo nome: ")
+novo_servico = input("Novo serviço: ")
+nova_situacao = input("Nova situação: ")
+
+if novo_nome != "":
+    e["nome"] = novo_nome
+
+if novo_servico != "":
+    e["servico"] = novo_servico
+
+if nova_situacao != "":
+    e["situacao"] = nova_situacao
+
+print("Encaminhamento atualizado!")
+input("Pressione Enter para voltar...")
+tela_Inicio()
 
 
 def tela_Inicio():
