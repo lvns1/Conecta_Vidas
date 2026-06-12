@@ -54,58 +54,69 @@ def painel_encaminhamentos():
         print(f"└{'─' * L}┘")
     input("\nPressione Enter para voltar ao menu...")
     tela_Inicio()
-
-
+    
 def listar_encaminhamentos():
     os.system("cls")
-header()
+    header()
 
-print("LISTA DE ENCAMINHAMENTOS")
+    print("LISTA DE ENCAMINHAMENTOS")
 
-if len(encaminhamentos) == 0:
-    print("Nenhum encaminhamento cadastrado.")
-else:
-    for e in encaminhamentos:
-        print("------------------------")
-        print("Nome:", e["nome"])
-        print("Idade:", e["idade"])
-        print("NIS:", e["nis"])
-        print("Serviço:", e["servico"])
-        print("Motivo:", e["motivo"])
-        print("Situação:", e["situacao"])
+    if len(encaminhamentos) == 0:
+        print("Nenhum encaminhamento cadastrado.")
+    else:
+        for e in encaminhamentos:
+            print("------------------------")
+            print("Nome:", e["nome"])
+            print("Idade:", e["idade"])
+            print("NIS:", e["nis"])
+            print("Serviço:", e["servico"])
+            print("Motivo:", e["motivo"])
+            print("Situação:", e["situacao"])
 
-input("\nPressione Enter para voltar...")
-tela_Inicio()
+    input("\nPressione Enter para voltar...")
+    tela_Inicio()
 
 def editar_encaminhamentos():
     os.system("cls")
-header()
+    header()
 
-print("EDITAR ENCAMINHAMENTO")
+    print("EDITAR ENCAMINHAMENTO")
 
-for i in range(len(encaminhamentos)):
-    print(i + 1, "-", encaminhamentos[i]["nome"])
+    for i in range(len(encaminhamentos)):
+        print(i + 1, "-", encaminhamentos[i]["nome"])
 
-opcao = int(input("Escolha o número: "))
+    opcao = int(input("Escolha o número: "))
 
-e = encaminhamentos[opcao - 1]
+    e = encaminhamentos[opcao - 1]
 
-novo_nome = input("Novo nome: ")
-novo_servico = input("Novo serviço: ")
-nova_situacao = input("Nova situação: ")
+    novo_nome = input("Novo nome: ")
+    nova_idade = input("Nova idade:")
+    novo_nis = input("Novo NIS: ")
+    novo_servico = input("Novo serviço: ")
+    nova_situacao = input("Nova situação: ")
+    novo_motivo = input ("Novo motivo: ")
 
-if novo_nome != "":
-    e["nome"] = novo_nome
+    if novo_nome != "":
+        e["nome"] = novo_nome
 
-if novo_servico != "":
-    e["servico"] = novo_servico
+    if nova_idade != "":
+        e["idade"] = nova_idade
 
-if nova_situacao != "":
-    e["situacao"] = nova_situacao
+    if novo_nis != "":
+        e["nis"] = novo_nis
+ 
+    if novo_servico != "":
+        e["servico"] = novo_servico
 
-print("Encaminhamento atualizado!")
-input("Pressione Enter para voltar...")
-tela_Inicio()
+    if novo_motivo != "":
+        e["motivo"] = novo_motivo
+
+    if nova_situacao != "":
+        e["situacao"] = nova_situacao
+
+    print("Encaminhamento atualizado!")
+    input("Pressione Enter para voltar...")
+    tela_Inicio()
 
 
 def tela_Inicio():
