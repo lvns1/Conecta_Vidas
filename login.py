@@ -17,6 +17,7 @@ def exibir_cabecalho():
     print("  assistente / assistente  [Social]")
     print("  saude      / saude       [Saúde]")
     print("  escolar    / escolar     [Escolar]")
+    print("\n  Digite 'sair' no campo Usuário para encerrar.")
     print("=" * 54)
 
 
@@ -33,6 +34,15 @@ def iniciar_sistema():
 
         # Captura de dados (Usamos strip e lower para evitar erros de digitação)
         usuario = input("  Usuário: ").strip().lower()
+
+        # Opção de encerrar o sistema
+        if usuario == "sair":
+            limpar_tela()
+            print("\n  Encerrando o sistema Conecta Vidas...")
+            print("  Até logo!\n")
+            time.sleep(1.5)
+            break
+
         senha = input("  Senha: ").strip().lower()
 
         print("\n  [Autenticando na base de dados...]")
