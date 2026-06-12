@@ -19,29 +19,6 @@ def exibir_cabecalho():
     print("  escolar    / escolar     [Escolar]")
     print("=" * 54)
 
-# ==========================================
-# BRECHAS PARA AS FUTURAS TELAS (MÓDULOS)
-# ==========================================
-
-
-def tela_saude():
-    limpar_tela()
-    exibir_cabecalho()
-    print("\n" + " " * 14 + "[ MÓDULO SAÚDE ]")
-    print("\nBem-vindo(a), Profissional de Saúde!")
-    print("-> Aqui você visualizará os dados do e-SUS.")
-
-    input()
-
-def tela_educacao():
-    limpar_tela()
-    exibir_cabecalho()
-    print("\n" + " " * 13 + "[ MÓDULO EDUCAÇÃO ]")
-    print("\nBem-vindo(a), Gestor(a) Escolar!")
-    print("-> Aqui você fará o controle de evasão e frequência.")
-    print("\n[ Funcionalidades em desenvolvimento... ]")
-    print("\nPressione ENTER para sair do sistema...")
-    input()
 
 # ==========================================
 # TELA DE LOGIN PRINCIPAL
