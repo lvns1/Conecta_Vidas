@@ -7,7 +7,7 @@ def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def exibir_cabecalho():
-    """Exibe a logo em ASCII do Conecta Vidas."""
+    """Exibe cabeçalho do Conecta Vidas."""
     print("=" * 54)
     print(" " * 19 + "CONECTA VIDAS")
     print("   Prefeitura do Recife - Integração Inteligente")
@@ -58,7 +58,7 @@ def iniciar_sistema():
         senha = input("  Senha: ").strip().lower()
         
         print("\n  [Autenticando na base de dados...]")
-        time.sleep(1.5) # Pausa dramática para simular carregamento
+        time.sleep(1.5) # Pausa para simular carregamento
         
         # Roteamento de Usuários
         if usuario == "assistente" and senha == "assistente":
