@@ -1,6 +1,8 @@
 import os
 import time
 import painel_assistente
+import painel_gestor_escolar
+import painel_gestor_saude
 
 def limpar_tela():
     """Limpa o terminal independentemente do sistema operacional."""
@@ -28,8 +30,7 @@ def tela_saude():
     print("\n" + " " * 14 + "[ MÓDULO SAÚDE ]")
     print("\nBem-vindo(a), Profissional de Saúde!")
     print("-> Aqui você visualizará os dados do e-SUS.")
-    print("\n[ Funcionalidades em desenvolvimento... ]")
-    print("\nPressione ENTER para sair do sistema...")
+
     input()
 
 def tela_educacao():
@@ -50,31 +51,31 @@ def iniciar_sistema():
     while True:
         limpar_tela()
         exibir_cabecalho()
-        
+
         print("\n" + " " * 18 + "Acesso ao Sistema\n")
-        
+
         # Captura de dados (Usamos strip e lower para evitar erros de digitação)
         usuario = input("  Usuário: ").strip().lower()
         senha = input("  Senha: ").strip().lower()
-        
+
         print("\n  [Autenticando na base de dados...]")
         time.sleep(1.5) # Pausa para simular carregamento
-        
+
         # Roteamento de Usuários
         if usuario == "assistente" and senha == "assistente":
              print("\nLogin realizado com sucesso!!\n")
              painel_assistente.abrir_painel()
-             
+
         elif usuario == "saude" and senha == "saude":
-            tela_saude()
-            break
+            painel_gestor_saude.tela_Inicio()
+
         elif usuario == "educacao" and senha == "educacao":
-            tela_educacao()
-            break
+            painel_gestor_escolar.tela_Inicio()
+
         # Adicionado suporte extra para "escolar" caso alguém leia o rodapé da imagem
-        elif usuario == "escolar" and senha == "escolar": 
-            tela_educacao()
-            break
+        elif usuario == "escolar" and senha == "escolar":
+            painel_gestor_escolar.tela_Inicio()
+
         else:
             print("\n  [!] Erro: Usuário ou senha incorretos.")
             print("  Por favor, tente novamente.")

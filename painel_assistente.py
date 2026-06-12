@@ -9,7 +9,9 @@ def limpar():
 
 def menu():
     print("=" * 45)
+    print("======================================")
     print("   PAINEL ASSISTENTE SOCIAL - CRAS")
+    print("======================================")
     print("=" * 45)
     print("1 - Registrar atendimento")
     print("2 - Listar atendimentos")
