@@ -1,4 +1,70 @@
 import os
+import json
+from datetime import datetime
+
+ARQUIVO_DADOS = "encaminhamentos_saude.json"
+
+
+def carregar_dados():
+    """Carrega os encaminhamentos do arquivo JSON ao iniciar."""
+    global encaminhamentos
+    if os.path.exists(ARQUIVO_DADOS):
+        with open(ARQUIVO_DADOS, "r", encoding="utf-8") as f:
+            encaminhamentos = json.load(f)
+
+
+def salvar_dados():
+    """Salva os encaminhamentos no arquivo JSON."""
+    with open(ARQUIVO_DADOS, "w", encoding="utf-8") as f:
+        json.dump(encaminhamentos, f, ensure_ascii=False, indent=4)
+
+
+def exportar_relatorio():
+    os.system("cls")
+    header()
+
+    print("EXPORTAR RELATÓRIO\n")
+
+    if len(encaminhamentos) == 0:
+        print("Nenhum encaminhamento para exportar.")
+        input("Pressione Enter para voltar...")
+        tela_Inicio()
+        return
+
+    agora = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
+    nome_arquivo = f"relatorio_saude_{agora}.txt"
+
+    urgentes = [e for e in encaminhamentos if e["situacao"].lower() == "urgente"]
+    medios   = [e for e in encaminhamentos if e["situacao"].lower() == "média"]
+    leves    = [e for e in encaminhamentos if e["situacao"].lower() == "leve"]
+
+    with open(nome_arquivo, "w", encoding="utf-8") as f:
+        f.write("=" * 60 + "\n")
+        f.write("        RELATÓRIO DE ENCAMINHAMENTOS - UBS IBURA II\n")
+        f.write(f"        Gerado em: {datetime.now().strftime('%d/%m/%Y às %H:%M')}\n")
+        f.write("=" * 60 + "\n\n")
+
+        f.write("RESUMO:\n")
+        f.write(f"  Total de encaminhamentos: {len(encaminhamentos)}\n")
+        f.write(f"  Urgentes: {len(urgentes)}\n")
+        f.write(f"  Médios:   {len(medios)}\n")
+        f.write(f"  Leves:    {len(leves)}\n\n")
+        f.write("=" * 60 + "\n\n")
+
+        # Urgentes primeiro
+        for e in sorted(encaminhamentos, key=lambda x: {"urgente": 0, "média": 1, "leve": 2}.get(x["situacao"].lower(), 3)):
+            f.write(f"Nome:     {e['nome']}\n")
+            f.write(f"Idade:    {e['idade']} anos\n")
+            f.write(f"NIS:      {e['nis']}\n")
+            f.write(f"Serviço:  {e['servico']}\n")
+            f.write(f"Motivo:   {e['motivo']}\n")
+            f.write(f"Situação: {e['situacao']}\n")
+            f.write("-" * 40 + "\n")
+
+    print(f"\nRelatório exportado com sucesso: {nome_arquivo}")
+    input("Pressione Enter para voltar ao menu...")
+    tela_Inicio()
+
 
 def header():
     print("                            CONECTAVIDAS")
@@ -49,6 +115,7 @@ def cadastro_encaminhamento():
     }
 
     encaminhamentos.append(perfil_encaminhamento)
+    salvar_dados()
 
     print("\nEncaminhamento registrado com sucesso!")
     input("Pressione Enter para voltar ao menu...")
@@ -130,11 +197,13 @@ def editar_encaminhamentos():
         e["situacao"] = nova_situacao
 
     print("\nEncaminhamento atualizado!")
+    salvar_dados()
     input("Pressione Enter para voltar...")
     tela_Inicio()
 
 
 def tela_Inicio():
+    carregar_dados()
     os.system("cls")
     header()
 
@@ -142,7 +211,8 @@ def tela_Inicio():
     print("2 - Painel de encaminhamentos")
     print("3 - Listar encaminhamentos")
     print("4 - Editar encaminhamentos")
-    print("5 - Finalizar sistema\n")
+    print("5 - Exportar relatório (.txt)")
+    print("6 - Finalizar sistema\n")
 
     try:
         funcao = int(input("Digite o que deseja visualizar/fazer: "))
@@ -160,6 +230,9 @@ def tela_Inicio():
             editar_encaminhamentos()
 
         elif funcao == 5:
+            exportar_relatorio()
+
+        elif funcao == 6:
             os.system("cls")
             print("Sistema finalizado.")
             return
